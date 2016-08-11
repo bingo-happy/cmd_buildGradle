@@ -1,0 +1,63 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.5.0'
+    }
+}
+ 
+apply plugin:  'com.android.application'  //作为主项目
+android {
+	compileSdkVersion 19
+	buildToolsVersion "22.0.1"
+      
+    defaultConfig {
+		multiDexEnabled true  //允许依赖重复的jar
+	}
+	dexOptions {
+        incremental = true;
+        preDexLibraries = false
+        javaMaxHeapSize "4g" // 定义build内存大小，防止某些内存不足的报错，2g也许也够了
+    } 
+    sourceSets {
+        main{
+            manifest.srcFile 'AndroidManifest.xml'	  
+            java.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']   
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+	signingConfigs {//签名配置
+        release {//发布版签名配置
+            storeFile file("XXX")//密钥文件路径，如是相对路径在mainModel文件夹下
+            storePassword "XXX"//密钥文件密码
+            keyAlias "XXX"//key别名
+            keyPassword "XXX"//key密码
+        }
+       
+		}
+		buildTypes {//build类型
+			release {//发布
+				signingConfig signingConfigs.release//设置签名信息
+		}
+		
+	}
+
+	lintOptions {  
+        abortOnError false  //android studio的编译时屏蔽掉lint检查，可以避免由于编译条件太过严格而编译不过的问题：
+    } 
+    
+      dependencies {
+          compile fileTree(dir:'libs', include:['*.jar'])
+          compile project(':XXX')   //所依赖的子model了名字，在root目录下
+		  compile project(':XXX')
+		  compile project(':XXX')
+		  compile project(':XXX')
+		  compile project(':XXX')
+		  
+      }
+  } 
