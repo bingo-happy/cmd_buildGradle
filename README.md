@@ -6,3 +6,5 @@ method of configure "build.gradle"
 
 使用方法：<b>配置好gradle脚本与环境，在root目录cmd执行gradle build
 
+[参考链接](https://segmentfault.com/a/1190000004229002)
+
