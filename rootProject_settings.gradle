@@ -1,0 +1,1 @@
+include ':xxx',':xxx',':xxx',':xxx',':xxx',':xxx'  //root下所有的model，包括application和libraries
